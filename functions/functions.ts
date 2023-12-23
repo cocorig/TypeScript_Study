@@ -9,11 +9,11 @@ function SayHi(age: number | undefined, name: string): string {
 console.log(SayHi(undefined, "하연"));
 console.log(SayHi(20, "하연"));
 
-function add(...nums: number[]) {
+function add1(...nums: number[]) {
   return nums.reduce((result, num) => result + num, 0);
 }
 
-add(1, 3, 4);
+add1(1, 3, 4);
 
 /// this의 타입을 정할 때
 interface Cat {
