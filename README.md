@@ -1,2 +1,1 @@
-# Ts_study
-typesctipt 저장소
+[TS Playground](https://www.typescriptlang.org/play?#code/MYGwhgzhAEDCYCdoG8BQ1oHpPWAexDyQG51c8A7CAFwQFdhqiAKABzoCMQBLYcwpAC5oNBNwoBzAJRoMGagAtuEAHT4B0ALz8ipDAF8yNRNWYyyGfFQIBTFYQnMA5MYTUnUvdEOGrNaBwAtgDuWtAUNqHwCM4INgAmHkA)
