@@ -56,10 +56,10 @@ const reducer = (state: StateType, action: ActionType) => {
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-
+  const themeClass = state.theme === "dark" ? "dark-theme" : "light-theme";
   return (
     <ThemeContext.Provider value={{ state, dispatch }}>
-      {children}
+      <div className={`${themeClass}`}>{children}</div>
     </ThemeContext.Provider>
   );
 };

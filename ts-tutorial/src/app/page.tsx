@@ -4,6 +4,7 @@ import PostList from "@/components/postList/PostList";
 import Parent from "@/components/childrenParent/Parent";
 import Child from "@/components/childrenParent/Child";
 import SecondChild from "@/components/childrenParent/SecondChild";
+import ShapeList from "@/components/exclude/ShapeList";
 export default function Home() {
   return (
     <main className={styles.main}>
@@ -12,6 +13,7 @@ export default function Home() {
         <Child />
         <SecondChild />
       </Parent>
+      <ShapeList />
     </main>
   );
 }
