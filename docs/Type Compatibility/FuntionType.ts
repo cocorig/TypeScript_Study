@@ -2,22 +2,24 @@
 // 할당을 받는 함수의 타입을 Target이라하고, 할당하려는 함수의 타입을 Source라고 하면
 // 매개변수 이름이 다르더라도 매개변수의 타입과 순서가 일치하면 할당이 가능합니다.
 type Source = {
+  // 좁은타입
   prop1: number;
   prop2: string;
 };
 
 type Target = {
+  // 넓은타입
   prop1: number;
-  prop2: string;
 };
 
 let source: Source = { prop1: 1, prop2: "hello" };
 const target: Target = source;
-
+// 변수 source는 좁은타입인 Source 타입일 때 source는 넓은타입인 target변수에 할당이 가능하다. 공변성을 가짐
 // 할당이 가능한 이유:
-//Source와 Target은 동일한 구조를 갖고 있으며, 각 프로퍼티의 타입도 동일하기 때문입니다.
-// 매개변수 타입 할당 가능성: Source의 매개변수 타입이 Target의 매개변수 타입에 할당 가능한가?
+// Source와 Target은 동일한 구조를 갖고 있으며, 각 프로퍼티의 타입도 동일하기 때문입니다.
+// 매개변수 타입 할당 가능성: Source의 매개변수 타입이 Target의 매개변수 타입에 할당 가능한가?// 할당 하려는 타입의 매개변수 타입이 할당을 받는 함수의 매개변수 타입에 할당이 가능한지?
 // 반환 타입 할당 가능성: Target의 반환 타입이 Source의 반환 타입에 할당 가능한가?
+// 할당 받는 함수의 반환 타입이 할당 하려는 함수의 반환 타압에 할당가능한지
 // 만약 두 가지 모두 통과라면, Target은 Source에 할당 가능합니다.
 // 1.1 할당이 가능한 경우
 type Sum = (sumFirst: number, sumSecond: number) => number;
@@ -32,26 +34,31 @@ const multiply: Multiply = sum;
 
 // 1.2 할당이 불가능한 경우
 interface Pokemon {
+  // 수퍼타입
   //더 일반적인 타입
   name: string;
 }
 
 interface Pikachu extends Pokemon {
+  // 서브타입
   //더 구체적인 타입
-  level: number;
+  level: string;
+  age: number;
 }
 
 let getName = (pokemon: Pokemon) => {
+  // 수퍼타입
   return pokemon.name;
 };
 
 let getLevel = (pikachu: Pikachu) => {
-  return pikachu.level;
+  // 서브타입
+  return `${pikachu.name}는${pikachu.level}입니다.`;
 };
 
-//getLevel = getName;// 'string' 형식은 'number' 형식에 할당할 수 없습니다.
+getLevel = getName;
 //getName = getLevel; //Error : 'pikachu' 및 'pokemon' 매개 변수의 형식이 호환되지 않습니다.
-// 넓은 -> 좁은 x
+
 /*
 getName을 getLevel에 할당하는 경우 getName은 string 타입을 반환하는 반면에 함수 getLevel은 number 타입을 반환합니다.따라서 이 두 함수의 반환 타입이 서로 다르기 때문에 할당할 수 없습니다.
 반면에 getLevel 함수를 getName에 할당하는 경우, getLevel 함수의 매개변수 타입이 더 구체적인 Pikachu이고, getName 함수의 매개변수 타입은 더 일반적인 Pokemon입니다.

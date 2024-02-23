@@ -3,7 +3,7 @@ type OneDigitOdd = 1 | 3 | 5 | 7 | 9;
 const three: OneDigitOdd = 3;
 const num: number = three;
 const four: number = 4;
-const oneDigitOdd: OneDigitOdd = four; // Error : 'number' 형식은 'OneDigitOdd' 형식에 할당할 수 없습니다.
+//const oneDigitOdd: OneDigitOdd = four; // Error : 'number' 형식은 'OneDigitOdd' 형식에 할당할 수 없습니다.
 
 interface Color {
   R: number;

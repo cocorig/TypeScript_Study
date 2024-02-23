@@ -43,7 +43,7 @@ y는 location 속성을 추가적으로 가지고 있지만 오류가 발생하�
 */
 
 //3.두 함수 비교 (Comparing two functions)
-// 3.1 매개변수 목록만 다른 두 함수의 경우
+// 3.1 매개변수 갯수만 다른 두 함수의 경우
 //함수의 매개변수 타입은 대상 함수의 매개변수 타입의 상위 타입이어야 합니다.
 let z = (a: number) => 0;
 let q = (b: number, s: string) => 0;
@@ -85,17 +85,21 @@ interface MyEvent {
 }
 
 interface MyMouseEvent extends MyEvent {
+  //MyMouseEvent ≤ MyEvent, MyMouseEvent는 MyEvent의 서브타입이다.
   x: number;
   y: number;
-}
+} // MyEvent는 MyMouseEvent에 대입할 수 있다.반대로 MyMouseEvent에 MyEvent는 대입할 수 없다.
 
 function listenEvent(eventName: string, callback: (e: MyEvent) => void) {
   const event = { type: "some-event-type" };
   callback(event);
 }
 
-// listenEvent("click", (e: MyMouseEvent) => {});// Error : 'e' 및 'e' 매개 변수의 형식이 호환되지 않습니다.'MyEvent' 형식에 'MyMouseEvent' 형식의 x, y 속성이 없습니다.
+// listenEvent("click", (e: MyMouseEvent) => {});// Error : 'e' 및 'e' 매개 변수의 형식이 호환되지 않습니다.'MyEvent' 형식에 'MyMouseEvent' 형식의 x, y 속성이 없습니다. listenEvent함수의 callback 매개변수의 타입으로 MyMouseEvent를 할당하면 에러가 발생합니다. MyEvent에는 x 및 y 속성이 없으므로 MyMouseEvent를 MyEvent로 간주하는 것은 불가능합니다.이는 TypeScript에서 함수 매개변수의 타입이 매개변수 위치에서 반공변적이라는 것을 보여줍니다. 함수 매개변수의 타입은 하위 타입으로 할당 가능합니다.
+// 그러나 여기서는 상위 타입인 MyEvent가 기대되는 곳에 하위 타입인 MyMouseEvent를 사용하려고 하기 때문에 오류가 발생합니다
 
+// MyMouseEvent 인터페이스가 MyEvent 인터페이스를 확장할 때 MyMouseEvent에는 MyEvent에 정의된 모든 속성이 포함합니다. 즉 MyMouseEvent는 MyEvent의 하위 타입입니다.
+//
 //3. 선택적 매개변수와 나머지 매개변수 (Optional Parameters and Rest Parameters)
 function invokeLater(args: number[], callback: (...args: number[]) => void) {
   /* ... Invoke callback with 'args' ... */
