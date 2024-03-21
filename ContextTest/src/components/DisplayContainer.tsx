@@ -1,6 +1,7 @@
 import React from "react";
 import Display from "./Display";
 const DisplayContainer = () => {
+  console.log("DisplayContainer");
   return (
     <div className="container">
       <h5>DisplayContainer</h5>

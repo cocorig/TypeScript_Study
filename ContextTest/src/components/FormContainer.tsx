@@ -3,6 +3,7 @@ import TextInput from "./TextInput";
 type Props = {};
 
 const FormContainer = () => {
+  console.log("FormContainer");
   return (
     <div className="container">
       <h5>FormContainer</h5>
