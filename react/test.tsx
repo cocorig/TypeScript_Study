@@ -1,4 +1,4 @@
-import {
+import React, {
   useState,
   useCallback,
   useRef,
@@ -9,6 +9,8 @@ import {
   FormEvent,
   ChangeEvent,
 } from "react";
+import Form from "./Form";
+// const WordRelay: () => JSX.Element
 
 const WordRelay = () => {
   const [word, setWord] = useState("제로초");
@@ -55,10 +57,10 @@ const WordRelay = () => {
   return (
     <>
       <div>{word}</div>
-      <form onSubmit={onSubmitForm}>
+      <Form onSubmit={onSubmitForm}>
         <input ref={inputEl} value={value} onChange={onChange} />
         <button>입력!</button>
-      </form>
+      </Form>
       <div>{result}</div>
     </>
   );
